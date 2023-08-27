@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const categoriesScehma=new mongoose.Schema({
-    categoryname:{
-        type:String,
-        required:true,
+    product_detail:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Products",
     }
 })
 

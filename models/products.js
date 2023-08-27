@@ -17,9 +17,10 @@ const productsScehma=new mongoose.Schema({
         type:Number,
         required:true,
     },
-    categorie_id:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Categories",
+    categorie:{
+        type:String,
+        enum:["Consumable","NonConsumable","Maintenance"],
+        default:"Consumable",
         required:true,
     },
     media_id:{
