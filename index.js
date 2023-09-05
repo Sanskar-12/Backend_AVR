@@ -1,11 +1,15 @@
-import express from "express"
+import express, { urlencoded } from "express"
 import { config } from "dotenv"
 import connectDB from "./config/db.js"
+import router from "./routes/User.js"
 
 
 const app=express()
 config({path:"./config/config.env"})
 connectDB()
+
+app.use(express.json())
+app.use("/api/v1",router)
 
 
 app.listen(4000,()=>{
