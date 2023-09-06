@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken"
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
   },
   username: {
     type: String,
@@ -30,13 +30,17 @@ const userSchema = new mongoose.Schema({
   institute_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Institute",
-    required: true,
   },
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
+
+userSchema.methods.generateToken=function(){
+  console.log(this._id)
+  return jwt.sign({_id:this._id},process.env.JWT_SECRET)
+}
 
 export const User = mongoose.model("User", userSchema);
 
